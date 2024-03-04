@@ -1,0 +1,60 @@
+<!-- profile.html -->
+
+{% extends "home.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Profile Picture -->
+                    <div class="text-center mb-3">
+                        {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}" class="img-fluid rounded-circle" alt="Profile Picture" style="width: 150px;">
+                        {% else %}
+                            <img src="{% static 'images/default_profile_pic.jpg' %}" class="img-fluid rounded-circle" alt="Default Profile Picture" style="width: 150px;">
+                        {% endif %}
+                    </div>
+                    <!-- Name -->
+                    <h5 class="card-title text-center">{{user.display_name }}</h5>
+                    <p class="card-text text-center">Full Name: {{ user.first_name }} {{user.last_name}} </p>
+                    <!-- Age -->
+                    <p class="card-text text-center">Age: {{ user.age }}</p>
+                    
+                    <!-- Gender -->
+                    <p class="card-text text-center">Gender: {{ user.gender }}</p>
+                    <!-- Phone -->
+                    <p class="card-text text-center">Phone: {{ user.phone }}</p>
+                    <!-- Present Address -->
+                    <p class="card-text text-center">Present Address: {{ user.present_address }}</p>
+                    <!-- Permanent Address -->
+                    <p class="card-text text-center">Permanent Address: {{ user.permanent_address }}</p>
+                    <!-- Update Button (Open Modal) -->
+                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#updateModal">
+                        Update Profile
+                    </button>
+                    <!-- Update Modal -->
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateModalLabel">Update Profile</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

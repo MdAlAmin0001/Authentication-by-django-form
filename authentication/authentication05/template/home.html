@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+
+  body {
+    background: linear-gradient(to right, #3488db, #2ecc72);
+    background-blend-mode: overlay; 
+    backdrop-filter: blur(5px);
+    color: #000;
+}
+     .modal-content {
+      background-color: rgba(255, 255, 255, 0.8); 
+      border-radius: 10px;
+      backdrop-filter: blur(5px); 
+  }
+
+  
+  .card {
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+  }
+</style>
+
+</head>
+<body>
+{% include "navbar.html" %}
+{% block content %}
+
+{% endblock %}
+
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
